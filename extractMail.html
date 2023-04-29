@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="email.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <input type="text" class="text-input" />
+      <input type="submit" />
+    </form>
+    <div class="output-div"></div>
+    <script src="email.js">
+      let form = document.querySelector("form");
+              let inputText = document.querySelector(".text-input");
+              let submit = document.querySelector(`[type="submit"]`);
+              let outputDiv = document.querySelector(".output-div");
+              form.addEventListener("submit", function (event) {
+                event.preventDefault();
+              });
+              submit.onclick = function () {
+                const text = inputText.value;
+                const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+                const emails = text.match(emailRegex);
+
+                // Add semicolon after each email address
+                const formattedEmails = emails.map((email) => email + ";").join(" ");
+                outputDiv.innerHTML = `${formattedEmails}`;
+              };
+              outputDiv.style.color = "red";
+              outputDiv.style.cssText = ` display: flex;
+              flex-wrap: wrap;
+              width: 50px;
+              `;
+
+              // Extract email addresses using regex
+    </script>
+  </body>
+</html>
